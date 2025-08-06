@@ -1,60 +1,62 @@
 [
   {
-    "id": "ah011ewq1x4yn5kdyota9",
+    "id": "item1",
     "title": "iPhone 13 Pro",
     "description": "Black iPhone 13 Pro with a cracked screen protector. Last seen in the library study area.",
     "category": "electronics",
     "location": "Main Library - Study Hall",
     "contact": "alex.j@student.edu",
     "type": "lost",
-    "userId": "avz6aeeer7lkg75b8dl3w8",
+    "userId": "user1",
     "imageUrl": "/uploads/sample-phone.svg",
     "createdAt": "2025-08-04T08:54:19.858Z"
   },
   {
-    "id": "jmf9ks3mqlaat965v6pvyk",
-    "title": "Blue Adidas Backpack",
-    "description": "Found a blue Adidas backpack with some textbooks inside. Contains a chemistry notebook with the name 'Emma' on it.",
-    "category": "accessories",
-    "location": "Chemistry Building - Room 204",
-    "contact": "sarah.chen@student.edu",
-    "type": "found",
-    "userId": "4b60kb8tmzu6bffke2smce",
-    "imageUrl": "/uploads/sample-backpack.svg",
-    "createdAt": "2025-08-05T08:54:19.858Z"
-  },
-  {
-    "id": "o3v42dtaidqkovmau12w4f",
-    "title": "Silver MacBook Pro",
-    "description": "13-inch MacBook Pro with stickers on it. Found it in the cafeteria after lunch rush.",
-    "category": "electronics",
-    "location": "Student Cafeteria - Table 12",
-    "contact": "mike.r@student.edu",
-    "type": "found",
-    "userId": "s06bvcsf6tcfz0r6fm0ec",
-    "imageUrl": "/uploads/sample-laptop.svg",
-    "createdAt": "2025-08-06T02:54:19.858Z"
-  },
-  {
-    "id": "09kc85ismlyqzp7obi0kv3",
+    "id": "item4",
     "title": "Black Leather Wallet",
     "description": "Lost my black leather wallet with student ID and some cash. Please contact if found!",
     "category": "accessories",
     "location": "Basketball Court",
     "contact": "alex.j@student.edu",
     "type": "lost",
-    "userId": "avz6aeeer7lkg75b8dl3w8",
-    "createdAt": "2025-08-06T05:54:19.858Z"
+    "userId": "user1",
+    "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDIwMCAxNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNmMGYwZjAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iNjAiIHk9IjUwIiB3aWR0aD0iODAiIGhlaWdodD0iNTAiIHJ4PSI0IiBmaWxsPSIjMzMzIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMSIvPjxyZWN0IHg9IjY1IiB5PSI1NSIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQwIiByeD0iMiIgZmlsbD0iIzU1NSIvPjx0ZXh0IHg9IjEwMCIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiM2NjYiPkJsYWNrIFdhbGxldDwvdGV4dD48L3N2Zz4=",
+    "createdAt": "2025-08-05T08:54:19.858Z"
   },
   {
-    "id": "2o09q1ldmqnmv6xjlu4qjr",
+    "id": "item2",
+    "title": "Blue Adidas Backpack",
+    "description": "Found a blue Adidas backpack with some textbooks inside. Contains a chemistry notebook with the name 'Emma' on it.",
+    "category": "accessories",
+    "location": "Chemistry Building - Room 204",
+    "contact": "sarah.chen@student.edu",
+    "type": "found",
+    "userId": "user2",
+    "imageUrl": "/uploads/sample-backpack.svg",
+    "createdAt": "2025-08-05T08:54:19.858Z"
+  },
+  {
+    "id": "item3",
+    "title": "Silver MacBook Pro",
+    "description": "13-inch MacBook Pro with stickers on it. Found it in the cafeteria after lunch rush.",
+    "category": "electronics",
+    "location": "Student Cafeteria - Table 12",
+    "contact": "mike.r@student.edu",
+    "type": "found",
+    "userId": "user3",
+    "imageUrl": "/uploads/sample-laptop.svg",
+    "createdAt": "2025-08-06T02:54:19.858Z"
+  },
+  {
+    "id": "item5",
     "title": "Room Keys",
     "description": "Found a set of keys with a red keychain near the main entrance. Has room number H2-210 tag.",
     "category": "keys",
     "location": "Main Entrance",
     "contact": "sarah.chen@student.edu",
     "type": "found",
-    "userId": "4b60kb8tmzu6bffke2smce",
-    "createdAt": "2025-08-06T07:54:19.858Z"
+    "userId": "user2",
+    "imageUrl": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDIwMCAxNTAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNmMGYwZjAiIHN0cm9rZT0iI2RkZCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iNzAiIGN5PSI2MCIgcj0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmNDQ0NCIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iODUiIHk9IjU3IiB3aWR0aD0iNDAiIGhlaWdodD0iNiIgZmlsbD0iI2ZmNDQ0NCIvPjxyZWN0IHg9IjEyMCIgeT0iNTQiIHdpZHRoPSI1IiBoZWlnaHQ9IjEyIiBmaWxsPSIjZmY0NDQ0Ii8+PGNpcmNsZSBjeD0iMTEwIiBjeT0iODAiIHI9IjEyIiBmaWxsPSJub25lIiBzdHJva2U9IiNmZjQ0NDQiIHN0cm9rZS13aWR0aD0iMyIvPjxyZWN0IHg9IjEyMiIgeT0iNzciIHdpZHRoPSIzMCIgaGVpZ2h0PSI2IiBmaWxsPSIjZmY0NDQ0Ii8+PHJlY3QgeD0iMTQ3IiB5PSI3NCIgd2lkdGg9IjUiIGhlaWdodD0iMTIiIGZpbGw9IiNmZjQ0NDQiLz48dGV4dCB4PSIxMDAiIHk9IjEyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIiBmaWxsPSIjNjY2Ij5Sb29tIEtleXM8L3RleHQ+PC9zdmc+",
+    "createdAt": "2025-08-06T04:54:19.858Z"
   }
 ]

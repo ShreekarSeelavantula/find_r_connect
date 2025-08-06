@@ -1,29 +1,26 @@
 [
   {
-    "id": "avz6aeeer7lkg75b8dl3w8",
+    "id": "user1",
     "name": "Alex Johnson",
     "email": "alex.j@student.edu",
+    "room": "H1-201",
     "phone": "+1234567890",
-    "studentId": "ST001",
-    "hostelRoom": "H1-201",
-    "createdAt": "2025-08-06T08:54:19.857Z"
+    "createdAt": "2025-08-04T10:30:00.000Z"
   },
   {
-    "id": "4b60kb8tmzu6bffke2smce",
+    "id": "user2", 
     "name": "Sarah Chen",
     "email": "sarah.chen@student.edu",
+    "room": "H2-105",
     "phone": "+1234567891",
-    "studentId": "ST002",
-    "hostelRoom": "H2-105",
-    "createdAt": "2025-08-06T08:54:19.858Z"
+    "createdAt": "2025-08-05T11:15:00.000Z"
   },
   {
-    "id": "s06bvcsf6tcfz0r6fm0ec",
-    "name": "Mike Rodriguez",
+    "id": "user3",
+    "name": "Mike Rodriguez", 
     "email": "mike.r@student.edu",
+    "room": "H1-315",
     "phone": "+1234567892",
-    "studentId": "ST003",
-    "hostelRoom": "H1-315",
-    "createdAt": "2025-08-06T08:54:19.858Z"
+    "createdAt": "2025-08-06T09:45:00.000Z"
   }
 ]

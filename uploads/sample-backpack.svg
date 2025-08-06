@@ -1,9 +1,11 @@
 <svg width="200" height="150" viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
   <rect width="200" height="150" fill="#f0f0f0" stroke="#ddd" stroke-width="2"/>
-  <path d="M80 40 Q75 35 85 35 L115 35 Q125 35 120 40 L120 110 Q120 120 110 120 L90 120 Q80 120 80 110 Z" fill="#4169e1" stroke="#2c4aa3" stroke-width="2"/>
-  <rect x="85" y="45" width="30" height="8" rx="2" fill="#2c4aa3"/>
-  <rect x="85" y="55" width="30" height="20" rx="2" fill="#5577ff" stroke="#4169e1" stroke-width="1"/>
-  <circle cx="90" cy="50" r="2" fill="#ccc"/>
-  <circle cx="110" cy="50" r="2" fill="#ccc"/>
-  <text x="100" y="135" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Blue Adidas Backpack</text>
+  <rect x="65" y="40" width="70" height="80" rx="8" fill="#1e3a8a" stroke="#1e40af" stroke-width="2"/>
+  <rect x="70" y="45" width="60" height="15" rx="3" fill="#2563eb"/>
+  <rect x="80" y="35" width="40" height="10" rx="2" fill="#1e40af"/>
+  <circle cx="85" cy="70" r="3" fill="#fbbf24"/>
+  <circle cx="115" cy="70" r="3" fill="#fbbf24"/>
+  <rect x="75" y="85" width="50" height="25" rx="3" fill="#1d4ed8"/>
+  <rect x="90" y="25" width="20" height="15" rx="2" fill="#1e40af"/>
+  <text x="100" y="135" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Blue Backpack</text>
 </svg>

@@ -1,6 +1,6 @@
 # Overview
 
-This is a Lost & Found Portal - a full-stack web application for managing lost and found items. Users can post items they've lost or found, search through existing items, and contact item owners. The application features image upload capabilities, filtering by category and type, and a responsive UI built with modern web technologies.
+This is a Lost & Found Portal - a campus/hostel web application for managing lost and found items using simple HTML, CSS, and JavaScript with a minimal Express.js backend. Users can post items they've lost or found, search through existing items, and contact item owners. The application features image upload capabilities, filtering by category and type, and stores data in JSON files for simplicity.
 
 # User Preferences
 
@@ -9,26 +9,24 @@ Preferred communication style: Simple, everyday language.
 # System Architecture
 
 ## Frontend Architecture
-- **Framework**: React with TypeScript using Vite as the build tool
-- **UI Library**: Shadcn/ui components built on Radix UI primitives
-- **Styling**: Tailwind CSS with custom CSS variables for theming
-- **State Management**: TanStack Query (React Query) for server state management
-- **Routing**: Wouter for lightweight client-side routing
-- **Form Handling**: React Hook Form with Zod validation
+- **Technology**: Pure HTML, CSS, and JavaScript (no frameworks)
+- **Styling**: Modern CSS with gradients, animations, and responsive design
+- **JavaScript**: ES6+ features for DOM manipulation and API interactions
+- **UI Components**: Custom modal dialogs, grid layouts, and form validation
+- **Responsive**: Mobile-first design with flexible grid system
 
 ## Backend Architecture
 - **Runtime**: Node.js with Express.js server
-- **Language**: TypeScript with ES modules
+- **Language**: JavaScript (ES modules)
 - **API Pattern**: RESTful API with JSON responses
 - **File Uploads**: Multer middleware for handling image uploads
-- **Development**: Hot module replacement via Vite integration in development mode
+- **Static Files**: Express static middleware for serving uploads and assets
 
 ## Data Storage
-- **Database**: Configured for PostgreSQL via Drizzle ORM
-- **ORM**: Drizzle ORM with Zod schema validation
-- **Fallback Storage**: JSON file-based storage implementation for development
-- **Database Provider**: Neon Database (serverless PostgreSQL)
-- **Migrations**: Drizzle Kit for database schema management
+- **Primary Storage**: JSON files (lostfound.json, users.json)
+- **File Location**: Root directory for easy access and modification
+- **Data Format**: Structured JSON arrays with linked user relationships
+- **Backup**: No database dependencies - files are easily readable and portable
 
 ## File Storage
 - **Image Uploads**: Local file system storage in `/uploads` directory
