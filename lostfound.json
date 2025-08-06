@@ -8,6 +8,7 @@
     "contact": "alex.j@student.edu",
     "type": "lost",
     "userId": "avz6aeeer7lkg75b8dl3w8",
+    "imageUrl": "/uploads/sample-phone.svg",
     "createdAt": "2025-08-04T08:54:19.858Z"
   },
   {
@@ -19,6 +20,7 @@
     "contact": "sarah.chen@student.edu",
     "type": "found",
     "userId": "4b60kb8tmzu6bffke2smce",
+    "imageUrl": "/uploads/sample-backpack.svg",
     "createdAt": "2025-08-05T08:54:19.858Z"
   },
   {
@@ -30,6 +32,7 @@
     "contact": "mike.r@student.edu",
     "type": "found",
     "userId": "s06bvcsf6tcfz0r6fm0ec",
+    "imageUrl": "/uploads/sample-laptop.svg",
     "createdAt": "2025-08-06T02:54:19.858Z"
   },
   {
