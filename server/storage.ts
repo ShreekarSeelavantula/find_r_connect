@@ -1,11 +1,24 @@
-import { type Item, type InsertItem } from "@shared/schema";
+import { type Item, type InsertItem, type User, type InsertUser } from "@shared/schema";
 import { randomUUID } from "crypto";
 import fs from "fs/promises";
 import path from "path";
 
-const DATA_FILE = path.join(process.cwd(), "lostfound.json");
+const ITEMS_FILE = path.join(process.cwd(), "lostfound.json");
+const USERS_FILE = path.join(process.cwd(), "users.json");
+
+interface DatabaseData {
+  users: User[];
+  items: Item[];
+}
 
 export interface IStorage {
+  // User operations
+  getUsers(): Promise<User[]>;
+  getUser(id: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  createUser(user: InsertUser): Promise<User>;
+  
+  // Item operations
   getItems(): Promise<Item[]>;
   getItem(id: string): Promise<Item | undefined>;
   createItem(item: InsertItem): Promise<Item>;
@@ -14,44 +27,110 @@ export interface IStorage {
 }
 
 export class JsonStorage implements IStorage {
-  private async ensureDataFile(): Promise<void> {
+  private async ensureDataFiles(): Promise<void> {
+    // Ensure items file exists
     try {
-      await fs.access(DATA_FILE);
+      await fs.access(ITEMS_FILE);
     } catch {
-      await fs.writeFile(DATA_FILE, JSON.stringify([]));
+      await fs.writeFile(ITEMS_FILE, JSON.stringify([]));
+    }
+    
+    // Ensure users file exists
+    try {
+      await fs.access(USERS_FILE);
+    } catch {
+      await fs.writeFile(USERS_FILE, JSON.stringify([]));
     }
   }
 
-  private async readData(): Promise<Item[]> {
-    await this.ensureDataFile();
-    const data = await fs.readFile(DATA_FILE, "utf-8");
+  private async readItems(): Promise<Item[]> {
+    await this.ensureDataFiles();
+    const data = await fs.readFile(ITEMS_FILE, "utf-8");
     return JSON.parse(data);
   }
 
-  private async writeData(items: Item[]): Promise<void> {
-    await fs.writeFile(DATA_FILE, JSON.stringify(items, null, 2));
+  private async writeItems(items: Item[]): Promise<void> {
+    await fs.writeFile(ITEMS_FILE, JSON.stringify(items, null, 2));
   }
 
+  private async readUsers(): Promise<User[]> {
+    await this.ensureDataFiles();
+    const data = await fs.readFile(USERS_FILE, "utf-8");
+    return JSON.parse(data);
+  }
+
+  private async writeUsers(users: User[]): Promise<void> {
+    await fs.writeFile(USERS_FILE, JSON.stringify(users, null, 2));
+  }
+
+  // User methods
+  async getUsers(): Promise<User[]> {
+    return await this.readUsers();
+  }
+
+  async getUser(id: string): Promise<User | undefined> {
+    const users = await this.readUsers();
+    return users.find(user => user.id === id);
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const users = await this.readUsers();
+    return users.find(user => user.email === email);
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const users = await this.readUsers();
+    const user: User = {
+      ...insertUser,
+      id: randomUUID(),
+      createdAt: new Date().toISOString(),
+    };
+    users.push(user);
+    await this.writeUsers(users);
+    return user;
+  }
+
+  // Item methods  
   async getItems(): Promise<Item[]> {
-    const items = await this.readData();
-    return items.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    const items = await this.readItems();
+    const users = await this.readUsers();
+    
+    // Attach user info to items
+    const itemsWithUsers = items.map(item => {
+      const user = users.find(u => u.id === item.userId);
+      return { ...item, user };
+    });
+    
+    return itemsWithUsers.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }
 
   async getItem(id: string): Promise<Item | undefined> {
-    const items = await this.readData();
-    return items.find(item => item.id === id);
+    const items = await this.readItems();
+    const users = await this.readUsers();
+    const item = items.find(item => item.id === id);
+    
+    if (item) {
+      const user = users.find(u => u.id === item.userId);
+      return { ...item, user };
+    }
+    return undefined;
   }
 
   async createItem(insertItem: InsertItem): Promise<Item> {
-    const items = await this.readData();
+    const items = await this.readItems();
+    const users = await this.readUsers();
+    
     const item: Item = {
       ...insertItem,
       id: randomUUID(),
       createdAt: new Date().toISOString(),
     };
     items.push(item);
-    await this.writeData(items);
-    return item;
+    await this.writeItems(items);
+    
+    // Return with user info
+    const user = users.find(u => u.id === item.userId);
+    return { ...item, user };
   }
 
   async searchItems(query: string): Promise<Item[]> {

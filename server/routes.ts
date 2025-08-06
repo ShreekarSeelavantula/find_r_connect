@@ -2,7 +2,7 @@ import type { Express, Request } from "express";
 import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertItemSchema } from "@shared/schema";
+import { insertItemSchema, insertUserSchema } from "@shared/schema";
 import multer, { type MulterError } from "multer";
 import path from "path";
 import fs from "fs";
@@ -32,6 +32,39 @@ const upload = multer({
 export async function registerRoutes(app: Express): Promise<Server> {
   // Serve uploaded images
   app.use('/uploads', express.static(uploadDir));
+
+  // User routes
+  app.get("/api/users", async (req, res) => {
+    try {
+      const users = await storage.getUsers();
+      res.json(users);
+    } catch (error: any) {
+      console.error('Error fetching users:', error);
+      res.status(500).json({ message: "Failed to fetch users" });
+    }
+  });
+
+  app.post("/api/users", async (req, res) => {
+    try {
+      const validatedData = insertUserSchema.parse(req.body);
+      
+      // Check if user already exists
+      const existingUser = await storage.getUserByEmail(validatedData.email);
+      if (existingUser) {
+        return res.status(400).json({ message: "User with this email already exists" });
+      }
+      
+      const user = await storage.createUser(validatedData);
+      res.status(201).json(user);
+    } catch (error: any) {
+      console.error('Error creating user:', error);
+      if (error?.name === 'ZodError') {
+        res.status(400).json({ message: "Invalid data", errors: error.errors });
+      } else {
+        res.status(500).json({ message: "Failed to create user" });
+      }
+    }
+  });
 
   // Get all items
   app.get("/api/items", async (req, res) => {

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "avz6aeeer7lkg75b8dl3w8",
+    "name": "Alex Johnson",
+    "email": "alex.j@student.edu",
+    "phone": "+1234567890",
+    "studentId": "ST001",
+    "hostelRoom": "H1-201",
+    "createdAt": "2025-08-06T08:54:19.857Z"
+  },
+  {
+    "id": "4b60kb8tmzu6bffke2smce",
+    "name": "Sarah Chen",
+    "email": "sarah.chen@student.edu",
+    "phone": "+1234567891",
+    "studentId": "ST002",
+    "hostelRoom": "H2-105",
+    "createdAt": "2025-08-06T08:54:19.858Z"
+  },
+  {
+    "id": "s06bvcsf6tcfz0r6fm0ec",
+    "name": "Mike Rodriguez",
+    "email": "mike.r@student.edu",
+    "phone": "+1234567892",
+    "studentId": "ST003",
+    "hostelRoom": "H1-315",
+    "createdAt": "2025-08-06T08:54:19.858Z"
+  }
+]

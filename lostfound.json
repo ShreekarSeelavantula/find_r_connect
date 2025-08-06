@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "id": "ah011ewq1x4yn5kdyota9",
+    "title": "iPhone 13 Pro",
+    "description": "Black iPhone 13 Pro with a cracked screen protector. Last seen in the library study area.",
+    "category": "electronics",
+    "location": "Main Library - Study Hall",
+    "contact": "alex.j@student.edu",
+    "type": "lost",
+    "userId": "avz6aeeer7lkg75b8dl3w8",
+    "createdAt": "2025-08-04T08:54:19.858Z"
+  },
+  {
+    "id": "jmf9ks3mqlaat965v6pvyk",
+    "title": "Blue Adidas Backpack",
+    "description": "Found a blue Adidas backpack with some textbooks inside. Contains a chemistry notebook with the name 'Emma' on it.",
+    "category": "accessories",
+    "location": "Chemistry Building - Room 204",
+    "contact": "sarah.chen@student.edu",
+    "type": "found",
+    "userId": "4b60kb8tmzu6bffke2smce",
+    "createdAt": "2025-08-05T08:54:19.858Z"
+  },
+  {
+    "id": "o3v42dtaidqkovmau12w4f",
+    "title": "Silver MacBook Pro",
+    "description": "13-inch MacBook Pro with stickers on it. Found it in the cafeteria after lunch rush.",
+    "category": "electronics",
+    "location": "Student Cafeteria - Table 12",
+    "contact": "mike.r@student.edu",
+    "type": "found",
+    "userId": "s06bvcsf6tcfz0r6fm0ec",
+    "createdAt": "2025-08-06T02:54:19.858Z"
+  },
+  {
+    "id": "09kc85ismlyqzp7obi0kv3",
+    "title": "Black Leather Wallet",
+    "description": "Lost my black leather wallet with student ID and some cash. Please contact if found!",
+    "category": "accessories",
+    "location": "Basketball Court",
+    "contact": "alex.j@student.edu",
+    "type": "lost",
+    "userId": "avz6aeeer7lkg75b8dl3w8",
+    "createdAt": "2025-08-06T05:54:19.858Z"
+  },
+  {
+    "id": "2o09q1ldmqnmv6xjlu4qjr",
+    "title": "Room Keys",
+    "description": "Found a set of keys with a red keychain near the main entrance. Has room number H2-210 tag.",
+    "category": "keys",
+    "location": "Main Entrance",
+    "contact": "sarah.chen@student.edu",
+    "type": "found",
+    "userId": "4b60kb8tmzu6bffke2smce",
+    "createdAt": "2025-08-06T07:54:19.858Z"
+  }
+]

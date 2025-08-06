@@ -36,9 +36,17 @@ Preferred communication style: Simple, everyday language.
 - **File Validation**: Image-only uploads with 5MB size limit
 
 ## Schema Design
-The application uses a unified Item schema with the following key fields:
+The application uses two main schemas:
+
+**User Schema:**
+- Basic info: name, email, phone (optional)
+- Student details: studentId, hostelRoom (optional)
+- Unique identification and timestamp tracking
+
+**Item Schema:**
 - Basic info: title, description, category, location, contact
 - Type differentiation: "lost" or "found" items
+- User association: userId field linking to user accounts
 - Optional image support with URL storage
 - Timestamp tracking for creation date
 

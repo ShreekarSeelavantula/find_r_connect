@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { Camera, X, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertItemSchema, type InsertItem } from "@shared/schema";
+import { insertItemSchema, type InsertItem, type User } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -27,6 +27,11 @@ export default function NewItemModal({ isOpen, onClose }: NewItemModalProps) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Fetch users for selection
+  const { data: users = [] } = useQuery<User[]>({
+    queryKey: ["/api/users"],
+  });
+
   const form = useForm<InsertItem>({
     resolver: zodResolver(insertItemSchema),
     defaultValues: {
@@ -37,6 +42,7 @@ export default function NewItemModal({ isOpen, onClose }: NewItemModalProps) {
       contact: "",
       type: "lost",
       imageUrl: "",
+      userId: "",
     },
   });
 
@@ -234,6 +240,31 @@ export default function NewItemModal({ isOpen, onClose }: NewItemModalProps) {
                       data-testid="input-location"
                     />
                   </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="userId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Posted By *</FormLabel>
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <FormControl>
+                      <SelectTrigger data-testid="select-user">
+                        <SelectValue placeholder="Select your account" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {users.map((user) => (
+                        <SelectItem key={user.id} value={user.id}>
+                          {user.name} ({user.email})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

@@ -101,6 +101,23 @@ export default function ItemDetailModal({ item, isOpen, onClose }: ItemDetailMod
             </p>
           </div>
 
+          {item.user && (
+            <div className="bg-blue-50 rounded-lg p-4 mb-4">
+              <h3 className="font-medium text-gray-900 mb-2">Posted By</h3>
+              <p className="text-gray-700 font-medium" data-testid="text-detail-user-name">
+                {item.user.name}
+              </p>
+              <p className="text-sm text-gray-600" data-testid="text-detail-user-email">
+                {item.user.email}
+              </p>
+              {item.user.hostelRoom && (
+                <p className="text-sm text-gray-600" data-testid="text-detail-user-room">
+                  Room: {item.user.hostelRoom}
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="bg-gray-50 rounded-lg p-4">
             <h3 className="font-medium text-gray-900 mb-2">Contact Information</h3>
             <p className="text-gray-600 mb-2" data-testid="text-detail-contact">
