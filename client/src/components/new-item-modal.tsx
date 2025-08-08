@@ -1,20 +1,21 @@
 import { useState } from "react";
-import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import { Camera, X, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertItemSchema, type InsertItem, type User } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
-
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useToast } from "@/hooks/use-toast";
+import { insertItemSchema, type InsertItem } from "@shared/schema";
+import { type User } from "@shared/schema";
+import { config } from "@/lib/config";
+import { Camera, X, Loader2 } from "lucide-react";
+
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 
 interface NewItemModalProps {
   isOpen: boolean;
@@ -59,7 +60,7 @@ export default function NewItemModal({ isOpen, onClose }: NewItemModalProps) {
         formData.append('image', data.image);
       }
 
-      const response = await fetch('/api/items', {
+      const response = await fetch(config.getApiUrl('/api/items'), {
         method: 'POST',
         body: formData,
       });

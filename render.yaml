@@ -1,0 +1,25 @@
+services:
+  # Backend service (Node.js/Express)
+  - type: web
+    name: findrconnect-backend
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build:server
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false  # You'll need to set this in Render dashboard
+      - key: FRONTEND_URL
+        value: https://findrconnect-frontend.onrender.com  # Update with your actual frontend URL
+
+  # Frontend service (React/Vite)
+  - type: static
+    name: findrconnect-frontend
+    plan: free
+    buildCommand: cd client && npm install && npm run build
+    staticPublishPath: client/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://findrconnect-backend.onrender.com  # Update with your actual backend URL
