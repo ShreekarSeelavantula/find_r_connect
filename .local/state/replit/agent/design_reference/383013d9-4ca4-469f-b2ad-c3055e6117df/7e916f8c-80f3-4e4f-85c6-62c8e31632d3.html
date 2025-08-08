@@ -1,0 +1,620 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost & Found Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': '#2563eb',
+                        'found': '#10b981', 
+                        'lost': '#f59e0b',
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- @COMPONENT: Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-search text-primary text-2xl"></i>
+                    <h1 class="text-xl font-semibold text-gray-900">Lost & Found Portal</h1>
+                </div>
+                <button id="newItemBtn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                    <i class="fas fa-plus"></i>
+                    <span>Post Item</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: SearchAndFilters -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
+                <div class="flex-1">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="searchInput" placeholder="Search items by name or description..." class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" data-mock="true">
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <select id="categoryFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" data-mock="true">
+                        <option value="">All Items</option>
+                        <option value="lost">Lost Items</option>
+                        <option value="found">Found Items</option>
+                    </select>
+                    <select id="categoryType" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" data-mock="true">
+                        <option value="">Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="books">Books</option>
+                        <option value="keys">Keys</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: SearchAndFilters -->
+
+    <!-- @COMPONENT: ItemsGrid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div id="itemsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- @MAP: items.map(item => ( -->
+            <!-- Sample Item Card 1 - Lost iPhone -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer item-card" data-mock="true">
+                <div class="relative">
+                    <!-- A close-up photo of a black iPhone on a wooden desk -->
+                    <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" alt="Lost iPhone" class="w-full h-48 object-cover rounded-t-lg" data-mock-image="true">
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-lost text-white px-2 py-1 rounded-full text-xs font-medium">LOST</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2" data-bind="item.title">iPhone 13 Pro - Black</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2" data-bind="item.description">Lost my black iPhone 13 Pro near the library on campus. Has a clear case with stickers.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            <span data-bind="item.date">2 days ago</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span data-bind="item.location">Library</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Item Card 2 - Found Wallet -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer item-card" data-mock="true">
+                <div class="relative">
+                    <!-- A brown leather wallet sitting on a table -->
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" alt="Found Wallet" class="w-full h-48 object-cover rounded-t-lg" data-mock-image="true">
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-found text-white px-2 py-1 rounded-full text-xs font-medium">FOUND</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2" data-bind="item.title">Brown Leather Wallet</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2" data-bind="item.description">Found this wallet in the cafeteria. Contains ID and some cards. Contact me to claim.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            <span data-bind="item.date">1 day ago</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span data-bind="item.location">Cafeteria</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Item Card 3 - Lost Backpack -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer item-card" data-mock="true">
+                <div class="relative">
+                    <!-- A blue backpack sitting on grass in a park -->
+                    <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" alt="Lost Backpack" class="w-full h-48 object-cover rounded-t-lg" data-mock-image="true">
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-lost text-white px-2 py-1 rounded-full text-xs font-medium">LOST</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2" data-bind="item.title">Blue Nike Backpack</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2" data-bind="item.description">Lost my blue Nike backpack with laptop and textbooks. Last seen near dormitory building.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            <span data-bind="item.date">3 days ago</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span data-bind="item.location">Dormitory</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Item Card 4 - Found Keys -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer item-card" data-mock="true">
+                <div class="relative">
+                    <!-- A set of keys with a colorful keychain on a table -->
+                    <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" alt="Found Keys" class="w-full h-48 object-cover rounded-t-lg" data-mock-image="true">
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-found text-white px-2 py-1 rounded-full text-xs font-medium">FOUND</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2" data-bind="item.title">Set of Keys with Red Keychain</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2" data-bind="item.description">Found these keys with a red "Mom" keychain near the parking lot. Several keys attached.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            <span data-bind="item.date">5 hours ago</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span data-bind="item.location">Parking Lot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Item Card 5 - Lost Headphones -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer item-card" data-mock="true">
+                <div class="relative">
+                    <!-- White wireless headphones on a minimalist background -->
+                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" alt="Lost Headphones" class="w-full h-48 object-cover rounded-t-lg" data-mock-image="true">
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-lost text-white px-2 py-1 rounded-full text-xs font-medium">LOST</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2" data-bind="item.title">White AirPods Pro</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2" data-bind="item.description">Lost my white AirPods Pro in the study hall. They have my initials "JS" engraved on the case.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            <span data-bind="item.date">1 day ago</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span data-bind="item.location">Study Hall</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Item Card 6 - Found Water Bottle -->
+            <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow cursor-pointer item-card" data-mock="true">
+                <div class="relative">
+                    <!-- A stainless steel water bottle on a wooden surface -->
+                    <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300" alt="Found Water Bottle" class="w-full h-48 object-cover rounded-t-lg" data-mock-image="true">
+                    <div class="absolute top-3 left-3">
+                        <span class="bg-found text-white px-2 py-1 rounded-full text-xs font-medium">FOUND</span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-gray-900 mb-2" data-bind="item.title">Stainless Steel Water Bottle</h3>
+                    <p class="text-gray-600 text-sm mb-3 line-clamp-2" data-bind="item.description">Found this water bottle in the gym. Has several stickers and looks well-used.</p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-calendar-alt mr-1"></i>
+                            <span data-bind="item.date">6 hours ago</span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            <i class="fas fa-map-marker-alt mr-1"></i>
+                            <span data-bind="item.location">Gym</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+        </div>
+
+        <!-- No items found state -->
+        <div id="noItemsFound" class="hidden text-center py-12">
+            <i class="fas fa-search text-gray-300 text-6xl mb-4"></i>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">No items found</h3>
+            <p class="text-gray-500">Try adjusting your search or filters</p>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ItemsGrid -->
+
+    <!-- @COMPONENT: NewItemModal -->
+    <div id="newItemModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-xl font-semibold text-gray-900">Post New Item</h2>
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <form id="newItemForm" class="space-y-4">
+                    <!-- @STATE: isSubmitting:boolean = false -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Item Type</label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="itemType" value="lost" class="sr-only" data-bind="formData.itemType">
+                                <div class="border-2 border-gray-300 rounded-lg p-3 text-center hover:border-lost transition-colors item-type-option">
+                                    <i class="fas fa-search text-lost text-2xl mb-2"></i>
+                                    <div class="font-medium">Lost Item</div>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="itemType" value="found" class="sr-only" data-bind="formData.itemType">
+                                <div class="border-2 border-gray-300 rounded-lg p-3 text-center hover:border-found transition-colors item-type-option">
+                                    <i class="fas fa-check-circle text-found text-2xl mb-2"></i>
+                                    <div class="font-medium">Found Item</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="itemTitle" class="block text-sm font-medium text-gray-700 mb-2">Item Name *</label>
+                        <input type="text" id="itemTitle" name="itemTitle" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., iPhone 13, Blue backpack" data-bind="formData.title">
+                    </div>
+
+                    <div>
+                        <label for="itemCategory" class="block text-sm font-medium text-gray-700 mb-2">Category *</label>
+                        <select id="itemCategory" name="itemCategory" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" data-bind="formData.category">
+                            <option value="">Select category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="books">Books</option>
+                            <option value="keys">Keys</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="itemDescription" class="block text-sm font-medium text-gray-700 mb-2">Description *</label>
+                        <textarea id="itemDescription" name="itemDescription" required rows="3" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Provide details to help identify the item..." data-bind="formData.description"></textarea>
+                    </div>
+
+                    <div>
+                        <label for="itemLocation" class="block text-sm font-medium text-gray-700 mb-2">Location *</label>
+                        <input type="text" id="itemLocation" name="itemLocation" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="e.g., Library, Cafeteria, Dormitory" data-bind="formData.location">
+                    </div>
+
+                    <div>
+                        <label for="contactInfo" class="block text-sm font-medium text-gray-700 mb-2">Contact Information *</label>
+                        <input type="text" id="contactInfo" name="contactInfo" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Email or phone number" data-bind="formData.contact">
+                    </div>
+
+                    <div>
+                        <label for="itemImage" class="block text-sm font-medium text-gray-700 mb-2">Photo</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:border-primary transition-colors">
+                            <input type="file" id="itemImage" name="itemImage" accept="image/*" class="hidden" data-implementation="Should handle image upload and preview">
+                            <div id="imagePreview" class="hidden mb-3">
+                                <img id="previewImage" src="" alt="Preview" class="max-w-full h-32 object-cover rounded mx-auto" data-mock-image="true">
+                            </div>
+                            <div id="uploadPrompt">
+                                <i class="fas fa-camera text-gray-400 text-3xl mb-2"></i>
+                                <p class="text-gray-600">Click to upload a photo</p>
+                                <p class="text-xs text-gray-500 mt-1">JPG, PNG up to 5MB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex space-x-3 pt-4">
+                        <button type="button" id="cancelBtn" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">Cancel</button>
+                        <button type="submit" class="flex-1 bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors" data-event="click:handleSubmit" data-implementation="Should validate form and submit to backend">
+                            <span class="submit-text">Post Item</span>
+                            <i class="fas fa-spinner fa-spin hidden loading-icon"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: NewItemModal -->
+
+    <!-- @COMPONENT: ItemDetailModal -->
+    <div id="itemDetailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-lg w-full max-h-screen overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-6">
+                    <div class="flex items-center space-x-3">
+                        <span id="detailItemType" class="bg-lost text-white px-3 py-1 rounded-full text-sm font-medium" data-bind="selectedItem.type">LOST</span>
+                        <h2 id="detailItemTitle" class="text-xl font-semibold text-gray-900" data-bind="selectedItem.title">iPhone 13 Pro - Black</h2>
+                    </div>
+                    <button id="closeDetailModalBtn" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-4">
+                    <div id="detailImageContainer" class="mb-4">
+                        <!-- Sample detail image -->
+                        <img id="detailImage" src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400" alt="Item image" class="w-full h-64 object-cover rounded-lg" data-bind="selectedItem.image" data-mock-image="true">
+                    </div>
+
+                    <div>
+                        <h3 class="font-medium text-gray-900 mb-2">Description</h3>
+                        <p id="detailDescription" class="text-gray-600" data-bind="selectedItem.description">Lost my black iPhone 13 Pro near the library on campus. Has a clear case with stickers.</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <h3 class="font-medium text-gray-900 mb-1">Category</h3>
+                            <p id="detailCategory" class="text-gray-600" data-bind="selectedItem.category">Electronics</p>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-900 mb-1">Location</h3>
+                            <p id="detailLocation" class="text-gray-600" data-bind="selectedItem.location">Library</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-medium text-gray-900 mb-1">Posted</h3>
+                        <p id="detailDate" class="text-gray-600" data-bind="selectedItem.date">2 days ago</p>
+                    </div>
+
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <h3 class="font-medium text-gray-900 mb-2">Contact Information</h3>
+                        <p id="detailContact" class="text-gray-600" data-bind="selectedItem.contact">john.doe@email.com</p>
+                        <button class="mt-2 text-primary hover:text-blue-700 text-sm font-medium" data-event="click:handleContact" data-implementation="Should open email client or show contact options">
+                            <i class="fas fa-envelope mr-1"></i>
+                            Contact Owner
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: ItemDetailModal -->
+
+    <!-- Success Toast -->
+    <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50">
+        <i class="fas fa-check-circle mr-2"></i>
+        <span>Item posted successfully!</span>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="fixed top-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50">
+        <i class="fas fa-exclamation-circle mr-2"></i>
+        <span>Something went wrong. Please try again.</span>
+    </div>
+
+    <script>
+        // @FUNCTIONALITY: This script handles UI interactions and basic filtering - backend integration needed
+        (function() {
+            // DOM elements
+            const newItemBtn = document.getElementById('newItemBtn');
+            const newItemModal = document.getElementById('newItemModal');
+            const itemDetailModal = document.getElementById('itemDetailModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const closeDetailModalBtn = document.getElementById('closeDetailModalBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const newItemForm = document.getElementById('newItemForm');
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const categoryTypeFilter = document.getElementById('categoryType');
+            const itemCards = document.querySelectorAll('.item-card');
+            const imageUpload = document.getElementById('itemImage');
+            const uploadPrompt = document.getElementById('uploadPrompt');
+            const imagePreview = document.getElementById('imagePreview');
+            const previewImage = document.getElementById('previewImage');
+
+            // Modal controls
+            newItemBtn.addEventListener('click', () => {
+                newItemModal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+
+            function closeModal() {
+                newItemModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                newItemForm.reset();
+                resetImagePreview();
+                resetFormStyles();
+            }
+
+            function closeDetailModal() {
+                itemDetailModal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            closeDetailModalBtn.addEventListener('click', closeDetailModal);
+            cancelBtn.addEventListener('click', closeModal);
+
+            // Close modal when clicking backdrop
+            newItemModal.addEventListener('click', (e) => {
+                if (e.target === newItemModal) closeModal();
+            });
+
+            itemDetailModal.addEventListener('click', (e) => {
+                if (e.target === itemDetailModal) closeDetailModal();
+            });
+
+            // Item type selection
+            const itemTypeOptions = document.querySelectorAll('.item-type-option');
+            itemTypeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Remove previous selections
+                    itemTypeOptions.forEach(opt => {
+                        opt.classList.remove('border-lost', 'border-found', 'bg-red-50', 'bg-green-50');
+                        opt.classList.add('border-gray-300');
+                    });
+                    
+                    // Add selection styling
+                    const input = option.querySelector('input[type="radio"]');
+                    input.checked = true;
+                    
+                    if (input.value === 'lost') {
+                        option.classList.remove('border-gray-300');
+                        option.classList.add('border-lost', 'bg-red-50');
+                    } else {
+                        option.classList.remove('border-gray-300');
+                        option.classList.add('border-found', 'bg-green-50');
+                    }
+                });
+            });
+
+            // Image upload handling
+            uploadPrompt.addEventListener('click', () => {
+                imageUpload.click();
+            });
+
+            imageUpload.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImage.src = e.target.result;
+                        uploadPrompt.classList.add('hidden');
+                        imagePreview.classList.remove('hidden');
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            function resetImagePreview() {
+                uploadPrompt.classList.remove('hidden');
+                imagePreview.classList.add('hidden');
+                previewImage.src = '';
+                imageUpload.value = '';
+            }
+
+            function resetFormStyles() {
+                itemTypeOptions.forEach(opt => {
+                    opt.classList.remove('border-lost', 'border-found', 'bg-red-50', 'bg-green-50');
+                    opt.classList.add('border-gray-300');
+                });
+            }
+
+            // Form submission
+            newItemForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Basic form validation
+                const formData = new FormData(e.target);
+                const itemType = formData.get('itemType');
+                const title = formData.get('itemTitle');
+                const category = formData.get('itemCategory');
+                const description = formData.get('itemDescription');
+                const location = formData.get('itemLocation');
+                const contact = formData.get('contactInfo');
+
+                if (!itemType || !title || !category || !description || !location || !contact) {
+                    showToast('errorToast', 'Please fill in all required fields');
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = e.target.querySelector('button[type="submit"]');
+                const submitText = submitBtn.querySelector('.submit-text');
+                const loadingIcon = submitBtn.querySelector('.loading-icon');
+                
+                submitText.classList.add('hidden');
+                loadingIcon.classList.remove('hidden');
+                submitBtn.disabled = true;
+
+                // TODO: Implement backend API call to save data to lostfound.json
+                // Simulate API call
+                setTimeout(() => {
+                    // Reset loading state
+                    submitText.classList.remove('hidden');
+                    loadingIcon.classList.add('hidden');
+                    submitBtn.disabled = false;
+                    
+                    // Show success and close modal
+                    showToast('successToast', 'Item posted successfully!');
+                    closeModal();
+                    
+                    // TODO: Refresh items grid with new data
+                }, 1500);
+            });
+
+            // Search and filter functionality
+            function filterItems() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const categoryValue = categoryFilter.value;
+                const typeValue = categoryTypeFilter.value;
+                let visibleCount = 0;
+
+                itemCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    const itemTypeElement = card.querySelector('.bg-lost, .bg-found');
+                    const itemType = itemTypeElement ? (itemTypeElement.classList.contains('bg-lost') ? 'lost' : 'found') : '';
+                    
+                    // TODO: Add category matching once data structure is implemented
+                    
+                    const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
+                    const matchesCategory = !categoryValue || itemType === categoryValue;
+                    // const matchesType = !typeValue || cardCategory === typeValue; // TODO: Implement when data structure ready
+                    
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Show/hide no results message
+                const noItemsFound = document.getElementById('noItemsFound');
+                if (visibleCount === 0) {
+                    noItemsFound.classList.remove('hidden');
+                } else {
+                    noItemsFound.classList.add('hidden');
+                }
+            }
+
+            searchInput.addEventListener('input', filterItems);
+            categoryFilter.addEventListener('change', filterItems);
+            categoryTypeFilter.addEventListener('change', filterItems);
+
+            // Item card click handlers
+            itemCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // TODO: Populate modal with actual item data
+                    itemDetailModal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // Toast notification system
+            function showToast(toastId, message) {
+                const toast = document.getElementById(toastId);
+                if (message) {
+                    toast.querySelector('span').textContent = message;
+                }
+                toast.classList.remove('hidden');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 3000);
+            }
+
+            // TODO: Implement backend integration
+            // - Load items from lostfound.json on page load
+            // - Save new items to lostfound.json via API
+            // - Implement image upload and storage
+            // - Add real-time updates when new items are posted
+        })();
+    </script>
+</body>
+</html>
