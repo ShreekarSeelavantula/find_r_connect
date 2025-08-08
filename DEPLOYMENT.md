@@ -24,6 +24,7 @@
 - ✅ Created `render.yaml` for infrastructure as code deployment
 - ✅ Configured both backend and frontend services
 - ✅ Set up environment variables for both services
+- ✅ Removed database dependencies (using JSON file storage)
 
 ### 5. Documentation
 - ✅ Created comprehensive `README.md` with deployment instructions
@@ -35,7 +36,7 @@
 ### 1. Push to GitHub
 ```bash
 git add .
-git commit -m "Prepare for Render deployment"
+git commit -m "Prepare for Render deployment with JSON storage"
 git push origin main
 ```
 
@@ -76,7 +77,6 @@ git push origin main
 Set these in your Render backend service:
 ```bash
 NODE_ENV=production
-DATABASE_URL=your_postgresql_connection_string
 FRONTEND_URL=https://your-frontend-service.onrender.com
 ```
 
@@ -90,8 +90,14 @@ VITE_API_URL=https://your-backend-service.onrender.com
 
 1. **Update URLs**: After deployment, update the environment variables with the actual URLs provided by Render
 2. **Test Connection**: Verify that the frontend can communicate with the backend
-3. **Database Setup**: Ensure your database is properly configured and accessible
+3. **Data Storage**: Data will be stored in JSON files (`users.json` and `lostfound.json`)
 4. **File Uploads**: Test image upload functionality
+
+## Data Storage Notes
+
+- **JSON File Storage**: Your app uses `users.json` and `lostfound.json` for data storage
+- **Ephemeral Storage**: On Render's free plan, data will reset when the service restarts or redeploys
+- **No Database Required**: The app is configured to work without any database setup
 
 ## Troubleshooting
 
@@ -109,9 +115,9 @@ VITE_API_URL=https://your-backend-service.onrender.com
    - Verify `VITE_API_URL` is set correctly in frontend environment variables
    - Check that the backend service is running and accessible
 
-4. **Database Connection**:
-   - Ensure `DATABASE_URL` is set correctly
-   - Verify database is accessible from Render's servers
+4. **Data Persistence**:
+   - Remember that data will reset on service restart (free plan limitation)
+   - For persistent data, consider upgrading to a paid plan or using a database
 
 ### Support
 
@@ -126,9 +132,9 @@ If you encounter issues:
 - [ ] Code pushed to GitHub
 - [ ] Render services created (backend and frontend)
 - [ ] Environment variables configured
-- [ ] Database connection established
 - [ ] Frontend can communicate with backend
 - [ ] Image uploads working
 - [ ] All features tested and working
+- [ ] JSON file storage working correctly
 
-🎉 **Congratulations! Your FindRConnect application is now deployed on Render!**
+🎉 **Congratulations! Your FindRConnect application is now deployed on Render with JSON file storage!**

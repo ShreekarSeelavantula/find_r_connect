@@ -1,6 +1,6 @@
 # FindRConnect - Lost & Found Portal
 
-A modern web application for managing lost and found items on campus/hostel premises. Built with React, TypeScript, Express.js, and Drizzle ORM.
+A modern web application for managing lost and found items on campus/hostel premises. Built with React, TypeScript, Express.js, and JSON file storage.
 
 ## Features
 
@@ -10,6 +10,7 @@ A modern web application for managing lost and found items on campus/hostel prem
 - 👥 **User Management**: Create and manage user accounts
 - 📱 **Responsive Design**: Mobile-first approach with modern UI
 - 🔒 **Type Safety**: Full TypeScript support with Zod validation
+- 💾 **Simple Storage**: Data stored in JSON files (no database required)
 
 ## Tech Stack
 
@@ -24,19 +25,17 @@ A modern web application for managing lost and found items on campus/hostel prem
 ### Backend
 - **Node.js** with Express.js
 - **TypeScript** for type safety
-- **Drizzle ORM** for database operations
-- **Neon Database** (PostgreSQL) for data storage
+- **JSON File Storage** for data persistence
 - **Multer** for file uploads
 
 ## Deployment to Render
 
-This project is configured for deployment on Render with both frontend and backend services.
+This project is configured for deployment on Render with both frontend and backend services using JSON file storage.
 
 ### Prerequisites
 
 1. **GitHub Repository**: Push your code to a GitHub repository
-2. **Database**: Set up a Neon PostgreSQL database (or any PostgreSQL database)
-3. **Render Account**: Sign up at [render.com](https://render.com)
+2. **Render Account**: Sign up at [render.com](https://render.com)
 
 ### Environment Variables
 
@@ -45,7 +44,6 @@ Set these in your Render backend service:
 
 ```bash
 NODE_ENV=production
-DATABASE_URL=your_postgresql_connection_string
 FRONTEND_URL=https://your-frontend-service.onrender.com
 ```
 
@@ -87,7 +85,7 @@ VITE_API_URL=https://your-backend-service.onrender.com
 3. Configure:
    - **Name**: `findrconnect-frontend`
    - **Root Directory**: `client`
-   - **Build Command**: `npm install && npm run build`
+   - **Build Command**: `cd client && npm install && npm run build`
    - **Publish Directory**: `dist`
    - **Plan**: Free
 
@@ -95,14 +93,13 @@ VITE_API_URL=https://your-backend-service.onrender.com
 
 1. **Update URLs**: After deployment, update the environment variables with the actual URLs
 2. **Test**: Verify that the frontend can communicate with the backend
-3. **Database**: Ensure your database is properly configured and accessible
+3. **Data Storage**: Data will be stored in JSON files (`users.json` and `lostfound.json`)
 
 ## Local Development
 
 ### Prerequisites
 - Node.js 18+
 - npm or yarn
-- PostgreSQL database (or Neon database)
 
 ### Setup
 
@@ -118,19 +115,7 @@ VITE_API_URL=https://your-backend-service.onrender.com
    cd client && npm install && cd ..
    ```
 
-3. **Environment variables**:
-   Create a `.env` file in the root directory:
-   ```bash
-   DATABASE_URL=your_database_connection_string
-   NODE_ENV=development
-   ```
-
-4. **Database setup**:
-   ```bash
-   npm run db:push
-   ```
-
-5. **Start development server**:
+3. **Start development server**:
    ```bash
    npm run dev
    ```
@@ -151,15 +136,25 @@ FindRConnect/
 │   └── vite.config.ts
 ├── server/                # Backend Express application
 │   ├── routes.ts          # API routes
-│   ├── storage.ts         # Database operations
-│   ├── db.ts             # Database connection
+│   ├── storage.ts         # JSON file storage operations
+│   ├── db.ts             # Placeholder (not used with JSON storage)
 │   └── index.ts          # Server entry point
 ├── shared/               # Shared types and schemas
 │   └── schema.ts
 ├── uploads/              # File uploads directory
+├── users.json            # User data storage
+├── lostfound.json        # Items data storage
 ├── render.yaml           # Render deployment configuration
 └── package.json
 ```
+
+## Data Storage
+
+This application uses JSON files for data storage:
+- **`users.json`**: Stores user information
+- **`lostfound.json`**: Stores lost and found items
+
+**Note**: On Render's free plan, data will reset when the service restarts or redeploys since the filesystem is ephemeral. For production use, consider using a persistent database.
 
 ## API Endpoints
 
